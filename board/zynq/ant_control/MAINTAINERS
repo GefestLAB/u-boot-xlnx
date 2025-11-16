@@ -1,0 +1,6 @@
+zynq ant-control
+M:	Gefest
+S:	Maintained
+F:	board/zynq/ant-control
+F:	include/configs/zynq_ant_control.h
+F:	configs/zynq_ant_control_defconfig
