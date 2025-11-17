@@ -15,6 +15,14 @@
 	"wdstop=mw f8005000 ABC000\0" \
 	BOOTENV
 
+#define CONFIG_BOOTCOMMAND \
+	"setenv fdt_high 0xffffffff; " \
+	"setenv initrd_high 0xffffffff; " \
+	"fatload mmc 0:1 0x3000000 zImage; " \
+	"fatload mmc 0:1 0x2A00000 devicetree.dtb; " \
+	"fatload mmc 0:1 0x2000000 uramdisk.image.gz; " \
+	"bootz 0x3000000 0x2000000 0x2A00000"
+
 #include <configs/zynq-common.h>
 
 #endif /* __CONFIG_GLAB_ANT_CONTROL_H */
