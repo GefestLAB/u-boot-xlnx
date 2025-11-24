@@ -7,6 +7,8 @@
  */
 /dts-v1/;
 #include "zynq-7000.dtsi"
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/interrupt-controller/irq.h>
 
 / {
 	model = "Bitmain Control Board";
@@ -44,6 +46,26 @@
 		bootargs = "earlycon";
 		stdout-path = "serial0:115200n8";
 	};
+	gpio-leds {
+		compatible = "gpio-leds";
+		sys-led {
+			label = "sys-led";
+			gpios = <&gpio0 15 GPIO_ACTIVE_LOW>;
+			default-state = "off";
+		};
+
+		usr-led1 {
+			label = "usr-led1";
+			gpios = <&gpio0 37 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+		usr-led2 {
+			label = "usr-led2";
+			gpios = <&gpio0 38 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+	};
 };
 
 &clkc {
@@ -67,6 +89,9 @@
 	status = "okay";
 	phy-mode = "rgmii-id";
 	phy-handle = <&ethernet_phy>;
+
+    local-mac-address = [02 00 00 00 00 01];
+    mac-address       = [02 00 00 00 00 01];
 
 	/* 0362/5e62 */
 	ethernet_phy: ethernet-phy@1 {
